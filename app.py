@@ -6,8 +6,23 @@ secret = 'ddbca51759f340e58471ec1b929bad7b'
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-result = sp.search("attention", limit=10, type='track', market=None)
+#track_input
 
-track = result["tracks"]["items"][0]["name"];
+track_search = sp.search("attention", limit=10, type='track', market=None)
 
-print(track)
+for track in track_search['tracks']['items']:
+    artists = [artist['name'] for artist in track['artists']]
+    artists_result = [str(a) for a in artists]
+    track_result = track['name']
+
+    print(track_result)
+    print("," . join(artists_result))
+
+
+
+
+
+
+
+
+
